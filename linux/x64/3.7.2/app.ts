@@ -3,7 +3,7 @@ import fs from 'fs'
 import http from 'https'
 import Os from 'os'
 import crypto from 'crypto'
-import '/virtual/@kawix/std/package/kwa/register'
+
 
 
 export async function kawixPreload(){
@@ -11,6 +11,15 @@ export async function kawixPreload(){
 	let path = Path.join(Os.homedir(),  ".kawi", "arango3.72")
 	if(!fs.existsSync(path)){
 		fs.mkdirSync(path)
+	}
+
+
+	try{
+		await import('/virtual/@kawix/std/package/kwa/register')
+	}catch(e){
+		// load first std 
+		await import('gh+/kodhework/kawix@std0.9.3/std/dist/register.js')
+		await import('/virtual/@kawix/std/package/kwa/register')
 	}
 
 	let md5 = "913b35bd5e50cd798c795884c54ecd3f"
