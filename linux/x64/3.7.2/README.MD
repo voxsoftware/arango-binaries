@@ -12,3 +12,12 @@ Or using dynamic import:
 let {Program} = await import('gh+/voxsoftware/arango-binaries/linux/x64/3.7.2/app.ts')
 ``` 
 
+
+
+Start arango server: 
+
+```typescript
+await Program.execute({
+	port: 8528
+})
+```
